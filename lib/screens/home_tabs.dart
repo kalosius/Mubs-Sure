@@ -4,7 +4,7 @@ import 'messages_screen.dart';
 import 'profile_screen.dart';
 
 class HomeTabs extends StatefulWidget {
-  const HomeTabs({Key? key}) : super(key: key);
+  const HomeTabs({super.key});
 
   @override
   State<HomeTabs> createState() => _HomeTabsState();

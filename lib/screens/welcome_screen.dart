@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -151,14 +151,14 @@ class _AuthButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const _AuthButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.leading,
     required this.backgroundColor,
     required this.textColor,
     this.border,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

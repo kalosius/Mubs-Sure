@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'subscriptions_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   void _confirmLogout(BuildContext context) {
     showDialog<void>(
@@ -166,7 +166,6 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const Text('Subscriptions'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFF63D8E),
                             padding: const EdgeInsets.symmetric(
@@ -177,6 +176,7 @@ class ProfileScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          child: const Text('Subscriptions'),
                         ),
                       ],
                     ),

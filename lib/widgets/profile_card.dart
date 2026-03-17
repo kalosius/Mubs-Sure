@@ -8,13 +8,13 @@ class ProfileCard extends StatelessWidget {
   final double? width;
 
   const ProfileCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.age,
     required this.job,
     this.about,
     this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

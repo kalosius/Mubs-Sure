@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -121,12 +121,12 @@ class _ColoredTextField extends StatelessWidget {
   final bool obscure;
 
   const _ColoredTextField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hint,
     required this.background,
     this.obscure = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

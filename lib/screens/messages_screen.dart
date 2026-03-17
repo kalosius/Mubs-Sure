@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({Key? key}) : super(key: key);
+  const MessagesScreen({super.key});
 
   // example avatar image links you can replace later
   static const exampleAvatars = [

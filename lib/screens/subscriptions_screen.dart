@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum PlanType { basic, premium, vip }
 
 class SubscriptionsScreen extends StatefulWidget {
-  const SubscriptionsScreen({Key? key}) : super(key: key);
+  const SubscriptionsScreen({super.key});
 
   @override
   State<SubscriptionsScreen> createState() => _SubscriptionsScreenState();

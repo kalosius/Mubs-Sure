@@ -5,7 +5,7 @@ import 'profile_screen.dart';
 import 'subscriptions_screen.dart';
 
 class DiscoverScreen extends StatefulWidget {
-  const DiscoverScreen({Key? key}) : super(key: key);
+  const DiscoverScreen({super.key});
 
   @override
   State<DiscoverScreen> createState() => _DiscoverScreenState();
@@ -153,7 +153,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
 // Drawer widget extracted for clarity
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({Key? key}) : super(key: key);
+  const AppDrawer({super.key});
 
   void _confirmLogout(BuildContext context) {
     showDialog<void>(
@@ -210,7 +210,13 @@ class AppDrawer extends StatelessWidget {
                         BoxShadow(color: Colors.black12, blurRadius: 8),
                       ],
                     ),
-                    child: const Icon(Icons.favorite, color: Color(0xFFF63D8E)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Image.asset(
+                        'assets/images/logotransparent for icon.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   const Expanded(
