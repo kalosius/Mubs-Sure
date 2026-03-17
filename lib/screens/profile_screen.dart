@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
               Row(
                 children: [
                   const CircleAvatar(
-                    radius: 34,
+                    radius: 36,
                     backgroundColor: Color(0xFF1F2937),
                     child: Icon(Icons.person, size: 40),
                   ),
@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                         Text(
                           'messychinal',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 33,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
-                height: 52,
+                height: 54,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
@@ -66,6 +66,11 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
+              const Text(
+                'Complete your profile to be seen by more people!',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 10),
               LinearProgressIndicator(
                 value: 0.23,
                 minHeight: 8,

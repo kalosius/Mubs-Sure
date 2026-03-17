@@ -34,7 +34,18 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Rita')),
+      appBar: AppBar(
+        title: const Text('Rita'),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 14),
+            child: Icon(
+              Icons.shield_outlined,
+              color: MakerereMockData.softText,
+            ),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -58,7 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       color: msg.mine
                           ? MakerereMockData.brandPink
                           : const Color(0xFF1F2937),
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,6 +101,10 @@ class _ChatScreenState extends State<ChatScreen> {
                       controller: _controller,
                       decoration: const InputDecoration(
                         hintText: 'Write a message...',
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 14,
+                        ),
                       ),
                     ),
                   ),

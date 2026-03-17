@@ -17,16 +17,25 @@ class MessagesScreen extends StatelessWidget {
               const Text(
                 'mubssure',
                 style: TextStyle(
-                  fontSize: 34,
+                  fontSize: 38,
                   fontWeight: FontWeight.w900,
                   color: MakerereMockData.brandPink,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 2),
+              const Text(
+                'Search your campus matches',
+                style: TextStyle(
+                  color: MakerereMockData.softText,
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(height: 10),
               Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFF111827),
                   borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: const Color(0xFF1F2937)),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: const TextField(
@@ -46,7 +55,7 @@ class MessagesScreen extends StatelessWidget {
                   itemBuilder: (context, i) {
                     final chat = MakerereMockData.chats[i];
                     return ListTile(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10),
                       onTap: () => Navigator.pushNamed(context, '/chat'),
                       leading: Stack(
                         children: [

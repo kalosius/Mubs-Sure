@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/create_profile_screen.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: primary,
+        textTheme: GoogleFonts.plusJakartaSansTextTheme(
+          ThemeData.dark().textTheme,
+        ),
         colorScheme: const ColorScheme.dark(
           primary: MakerereMockData.brandPink,
           secondary: MakerereMockData.brandOrange,
@@ -33,6 +37,11 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           centerTitle: false,
           elevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w800,
+            color: Colors.white,
+          ),
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
@@ -52,7 +61,14 @@ class MyApp extends StatelessWidget {
             backgroundColor: primary,
             foregroundColor: Colors.white,
             textStyle: const TextStyle(fontWeight: FontWeight.w700),
+            elevation: 0,
           ),
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
         ),
       ),
       initialRoute: '/',

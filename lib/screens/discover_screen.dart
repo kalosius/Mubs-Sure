@@ -48,113 +48,148 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ],
               ),
               const SizedBox(height: 8),
+              Row(
+                children: List.generate(
+                  MakerereMockData.profiles.length,
+                  (index) => Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        right: index == MakerereMockData.profiles.length - 1
+                            ? 0
+                            : 4,
+                      ),
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: index <= _index
+                            ? Colors.white.withValues(alpha: 0.95)
+                            : Colors.white.withValues(alpha: 0.3),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
               Expanded(
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.network(
-                            profile.imageUrl,
-                            fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) =>
-                                Container(color: const Color(0xFF202938)),
-                          ),
-                          const DecoratedBox(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.transparent,
-                                  Colors.black87,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  transitionBuilder: (child, animation) {
+                    return FadeTransition(
+                      opacity: animation,
+                      child: ScaleTransition(
+                        scale: Tween(begin: 0.96, end: 1.0).animate(animation),
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Stack(
+                    key: ValueKey<int>(_index),
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.network(
+                              profile.imageUrl,
+                              fit: BoxFit.cover,
+                              errorBuilder: (_, __, ___) =>
+                                  Container(color: const Color(0xFF202938)),
+                            ),
+                            const DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.transparent,
+                                    Colors.black87,
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 18,
+                              right: 18,
+                              bottom: 24,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '${profile.name}, ${profile.age}',
+                                        style: const TextStyle(
+                                          fontSize: 42,
+                                          fontWeight: FontWeight.w900,
+                                          height: 1,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      const Icon(
+                                        Icons.verified,
+                                        color: Color(0xFF3B82F6),
+                                        size: 28,
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '${profile.program} • ${profile.hall}',
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    profile.about,
+                                    style: const TextStyle(fontSize: 17),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Wrap(
+                                    spacing: 6,
+                                    runSpacing: 6,
+                                    children: profile.interests
+                                        .map(
+                                          (e) => Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                              vertical: 6,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white10,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                color: Colors.white24,
+                                              ),
+                                            ),
+                                            child: Text(e),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                          Positioned(
-                            left: 18,
-                            right: 18,
-                            bottom: 24,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      '${profile.name}, ${profile.age}',
-                                      style: const TextStyle(
-                                        fontSize: 42,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Icon(
-                                      Icons.verified,
-                                      color: Color(0xFF3B82F6),
-                                      size: 28,
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  '${profile.program} • ${profile.hall}',
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  profile.about,
-                                  style: const TextStyle(fontSize: 17),
-                                ),
-                                const SizedBox(height: 8),
-                                Wrap(
-                                  spacing: 6,
-                                  runSpacing: 6,
-                                  children: profile.interests
-                                      .map(
-                                        (e) => Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                            vertical: 6,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white10,
-                                            borderRadius: BorderRadius.circular(
-                                              20,
-                                            ),
-                                            border: Border.all(
-                                              color: Colors.white24,
-                                            ),
-                                          ),
-                                          child: Text(e),
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      right: 12,
-                      top: 12,
-                      child: CircleAvatar(
-                        radius: 22,
-                        backgroundColor: Colors.black54,
-                        child: Text(
-                          '${profile.distanceKm}km',
-                          style: const TextStyle(fontSize: 12),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        right: 12,
+                        top: 12,
+                        child: CircleAvatar(
+                          radius: 22,
+                          backgroundColor: Colors.black54,
+                          child: Text(
+                            '${profile.distanceKm}km',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -186,8 +221,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 82,
-        height: 82,
+        width: 84,
+        height: 84,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: const Color(0xFF121A2A),

@@ -30,6 +30,16 @@ class _HomeTabsState extends State<HomeTabs> {
         backgroundColor: const Color(0xFF090E1B),
         selectedItemColor: const Color(0xFFFF2F6D),
         unselectedItemColor: const Color(0xFF7E8798),
+        selectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 0.1,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
+        elevation: 0,
         type: BottomNavigationBarType.fixed,
         currentIndex: _idx,
         onTap: (i) => setState(() => _idx = i),
