@@ -71,9 +71,12 @@ class WelcomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white30),
                         ),
-                        child: const Icon(
-                          Icons.local_fire_department,
-                          size: 42,
+                        child: Padding(
+                          padding: const EdgeInsets.all(14),
+                          child: Image.asset(
+                            'assets/images/logo.png',
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),

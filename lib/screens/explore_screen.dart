@@ -37,13 +37,24 @@ class ExploreScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 4),
-              const Text(
-                'mubssure',
-                style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w900,
-                  color: MakerereMockData.brandPink,
-                ),
+              Row(
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 30,
+                    height: 30,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'mubssure',
+                    style: TextStyle(
+                      fontSize: 42,
+                      fontWeight: FontWeight.w900,
+                      color: MakerereMockData.brandPink,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 2),
               const Text(

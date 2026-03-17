@@ -43,24 +43,27 @@ class _HomeTabsState extends State<HomeTabs> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _idx,
         onTap: (i) => setState(() => _idx = i),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_fire_department),
+            icon: ImageIcon(AssetImage('assets/images/logo.png')),
             label: 'Swipe',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore_outlined),
+            icon: const Icon(Icons.explore_outlined),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
+            icon: const Icon(Icons.favorite_border),
             label: 'Likes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
+            icon: const Icon(Icons.chat_bubble_outline),
             label: 'Chat',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
     );

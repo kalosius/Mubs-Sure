@@ -30,8 +30,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               const SizedBox(height: 6),
               Row(
                 children: [
-                  const Icon(Icons.favorite, color: MakerereMockData.brandPink),
-                  const SizedBox(width: 6),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 28,
+                    height: 28,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(width: 8),
                   const Text(
                     'mubssure',
                     style: TextStyle(
