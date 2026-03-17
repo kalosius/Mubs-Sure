@@ -5,6 +5,7 @@ import 'screens/create_profile_screen.dart';
 import 'screens/home_tabs.dart';
 import 'screens/chat_screen.dart';
 import 'screens/settings_screen.dart';
+import 'data/mock_data.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,25 +14,44 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primary = const Color(0xFFFF2D7A);
+    const primary = MakerereMockData.brandPink;
     return MaterialApp(
       title: 'MubsSure',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        brightness: Brightness.dark,
         primaryColor: primary,
-        colorScheme: ColorScheme.fromSeed(seedColor: primary),
-        scaffoldBackgroundColor: const Color(0xFFF6F6F8),
+        colorScheme: const ColorScheme.dark(
+          primary: MakerereMockData.brandPink,
+          secondary: MakerereMockData.brandOrange,
+          surface: MakerereMockData.appBackground,
+        ),
+        scaffoldBackgroundColor: MakerereMockData.appBackground,
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.white,
+          centerTitle: false,
+          elevation: 0,
+        ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Colors.white.withOpacity(0.95),
+          fillColor: const Color(0xFF141C2B),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 14,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(14),
             borderSide: BorderSide.none,
+          ),
+          hintStyle: const TextStyle(color: MakerereMockData.softText),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primary,
+            foregroundColor: Colors.white,
+            textStyle: const TextStyle(fontWeight: FontWeight.w700),
           ),
         ),
       ),

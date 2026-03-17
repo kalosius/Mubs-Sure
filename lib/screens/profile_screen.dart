@@ -1,268 +1,124 @@
 import 'package:flutter/material.dart';
-import 'subscriptions_screen.dart';
+import '../data/mock_data.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  void _confirmLogout(BuildContext context) {
-    showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Log out'),
-        content: const Text('Are you sure you want to sign out?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF63D8E),
-            ),
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text('Signed out')));
-            },
-            child: const Text('Sign out'),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
-              Container(
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 34,
+                    backgroundColor: Color(0xFF1F2937),
+                    child: Icon(Icons.person, size: 40),
+                  ),
+                  const SizedBox(width: 10),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'messychinal',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        Text(
+                          'Makerere University',
+                          style: TextStyle(color: MakerereMockData.softText),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.pushNamed(context, '/settings'),
+                    icon: const Icon(Icons.settings),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 24,
-                ),
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFFFFF0F5), Color(0xFFFFE7F0)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFEFF1F5),
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: const Text(
+                    'Edit profile',
+                    style: TextStyle(fontSize: 22),
                   ),
                 ),
+              ),
+              const SizedBox(height: 16),
+              LinearProgressIndicator(
+                value: 0.23,
+                minHeight: 8,
+                backgroundColor: const Color(0xFF273043),
+                valueColor: const AlwaysStoppedAnimation(
+                  MakerereMockData.brandPink,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                '23% complete your profile to be seen by more campus matches.',
+                style: TextStyle(color: MakerereMockData.softText),
+              ),
+              const SizedBox(height: 16),
+              _todoCard('Add at least 4 photos', '+28%'),
+              _todoCard('Add About Me', '+20%'),
+              _todoCard('Verify profile', '+8%'),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: const Color(0xFF151F32),
+                ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Profile',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              const Text(
-                                'Manage your account and preferences',
-                                style: TextStyle(color: Colors.black54),
-                              ),
-                            ],
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.settings,
-                            color: Colors.black54,
-                          ),
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/settings'),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 18),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Positioned(
-                          top: 8,
-                          child: Container(
-                            width: 110,
-                            height: 110,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 12,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        CircleAvatar(
-                          radius: 48,
-                          backgroundColor: Colors.pink[50],
-                          child: const Icon(
-                            Icons.person,
-                            size: 48,
-                            color: Color(0xFFF63D8E),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
                     const Text(
-                      'Jennifer Millar',
+                      'Mubssure Gold',
                       style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 8),
                     const Text(
-                      'jennifer.millar@email.com',
-                      style: TextStyle(color: Colors.black54),
+                      'See who likes you, top picks and more.',
+                      style: TextStyle(color: MakerereMockData.softText),
                     ),
-                    const SizedBox(height: 14),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            // TODO: navigate to edit profile
-                          },
-                          icon: const Icon(Icons.edit, size: 18),
-                          label: const Text('Edit Profile'),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFFF63D8E),
-                            elevation: 0,
-                            side: const BorderSide(color: Color(0xFFF63D8E)),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 12,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const SubscriptionsScreen(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFF63D8E),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 18,
-                              vertical: 12,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: const Text('Subscriptions'),
-                        ),
-                      ],
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/settings'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFFACC15),
+                        foregroundColor: Colors.black,
+                      ),
+                      child: const Text('Upgrade'),
                     ),
                   ],
                 ),
               ),
-
-              // Stats / quick info
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 18,
-                  vertical: 18,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _statItem('Matches', '128'),
-                    _statItem('Messages', '24'),
-                    _statItem('Views', '1.2k'),
-                  ],
-                ),
-              ),
-
-              // Settings list
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
-                ),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(Icons.person_outline),
-                      title: const Text('Account'),
-                      subtitle: const Text('Profile, email, and phone'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                    const Divider(height: 1),
-                    ListTile(
-                      leading: const Icon(Icons.shield_outlined),
-                      title: const Text('Privacy & Safety'),
-                      subtitle: const Text('Manage who can contact you'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                    const Divider(height: 1),
-                    ListTile(
-                      leading: const Icon(Icons.help_outline),
-                      title: const Text('Help & Support'),
-                      subtitle: const Text('Contact support or view FAQs'),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ),
-
               const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                child: ElevatedButton(
-                  onPressed: () => _confirmLogout(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: const Color(0xFFF63D8E),
-                    side: const BorderSide(color: Color(0xFFF63D8E)),
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.logout, size: 18),
-                      SizedBox(width: 8),
-                      Text('Sign out'),
-                    ],
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 30),
             ],
           ),
         ),
@@ -270,14 +126,33 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _statItem(String label, String value) => Column(
-    children: [
-      Text(
-        value,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+  Widget _todoCard(String title, String gain) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: const Color(0xFF111827),
       ),
-      const SizedBox(height: 6),
-      Text(label, style: const TextStyle(color: Colors.black54)),
-    ],
-  );
+      child: Row(
+        children: [
+          const Icon(Icons.auto_awesome, color: MakerereMockData.brandPink),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            ),
+          ),
+          Text(
+            gain,
+            style: const TextStyle(
+              color: MakerereMockData.brandPink,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

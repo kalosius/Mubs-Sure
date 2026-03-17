@@ -1,117 +1,141 @@
 import 'package:flutter/material.dart';
+import '../data/mock_data.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  double _distance = 15;
+  RangeValues _age = const RangeValues(18, 29);
+  bool _global = false;
+  bool _showFurther = true;
+  bool _hasBio = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
+      appBar: AppBar(title: const Text('Settings')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const Text('Account', style: TextStyle(fontWeight: FontWeight.bold)),
-          _settingTile(
-            icon: Icons.email,
-            title: 'Email',
-            subtitle: 'jennifer.millar@email.com',
-            onTap: () {},
+          _section(
+            child: SwitchListTile(
+              value: _global,
+              onChanged: (v) => setState(() => _global = v),
+              title: const Text('Global discovery'),
+              subtitle: const Text(
+                'Disabled by default. Focus on Makerere students only.',
+              ),
+            ),
           ),
-          _settingTile(
-            icon: Icons.lock,
-            title: 'Password',
-            subtitle: '•••••••',
-            onTap: () {},
+          _section(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Maximum distance',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      '${_distance.round()} km',
+                      style: const TextStyle(color: MakerereMockData.softText),
+                    ),
+                  ],
+                ),
+                Slider(
+                  value: _distance,
+                  min: 1,
+                  max: 50,
+                  activeColor: MakerereMockData.brandPink,
+                  onChanged: (v) => setState(() => _distance = v),
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  value: _showFurther,
+                  onChanged: (v) => setState(() => _showFurther = v),
+                  title: const Text('Show people farther away if I run out'),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 12),
-          const Text('Privacy', style: TextStyle(fontWeight: FontWeight.bold)),
-          SwitchListTile(
-            value: true,
-            onChanged: (_) {},
-            title: const Text('Profile Visibility'),
-            secondary: _smallIcon(Icon(Icons.visibility)),
+          _section(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Age range',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+                RangeSlider(
+                  values: _age,
+                  min: 18,
+                  max: 40,
+                  activeColor: MakerereMockData.brandPink,
+                  labels: RangeLabels(
+                    _age.start.round().toString(),
+                    _age.end.round().toString(),
+                  ),
+                  onChanged: (v) => setState(() => _age = v),
+                ),
+              ],
+            ),
           ),
-          SwitchListTile(
-            value: true,
-            onChanged: (_) {},
-            title: const Text('Messaging'),
-            secondary: _smallIcon(Icon(Icons.message)),
+          _section(
+            child: SwitchListTile(
+              value: _hasBio,
+              onChanged: (v) => setState(() => _hasBio = v),
+              title: const Text('Has a bio'),
+              subtitle: const Text('Only show profiles with a bio'),
+            ),
           ),
-          const SizedBox(height: 12),
-          const Text(
-            'Notifications',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          SwitchListTile(
-            value: true,
-            onChanged: (_) {},
-            title: const Text('New Matches'),
-            secondary: _smallIcon(Icon(Icons.notifications)),
-          ),
-          SwitchListTile(
-            value: true,
-            onChanged: (_) {},
-            title: const Text('Messages'),
-            secondary: _smallIcon(Icon(Icons.email)),
-          ),
-          const SizedBox(height: 12),
-          const Text(
-            'App Settings',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          _settingTile(
-            icon: Icons.language,
-            title: 'Language',
-            subtitle: 'English',
-            onTap: () {},
-          ),
-          _settingTile(
-            icon: Icons.brightness_6,
-            title: 'Theme',
-            subtitle: 'Light Mode',
-            onTap: () {},
-          ),
+          _optionRow('Interests'),
+          _optionRow('Looking for'),
+          _optionRow('Open to'),
+          _optionRow('Languages'),
+          _optionRow('Education'),
+          _optionRow('Communication style'),
+          _optionRow('Love style'),
+          _optionRow('Pets'),
+          const SizedBox(height: 20),
         ],
       ),
     );
   }
-}
 
-Widget _smallIcon(Icon icon) {
-  return Container(
-    width: 44,
-    height: 44,
-    decoration: BoxDecoration(
-      color: const Color(0xFFF7D6E6),
-      shape: BoxShape.circle,
-    ),
-    child: Center(child: Icon(icon.icon, color: const Color(0xFFF63D8E))),
-  );
-}
-
-Widget _settingTile({
-  required IconData icon,
-  required String title,
-  String? subtitle,
-  VoidCallback? onTap,
-}) {
-  return ListTile(
-    leading: Container(
-      width: 44,
-      height: 44,
+  Widget _section({required Widget child}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7D6E6),
-        shape: BoxShape.circle,
+        color: const Color(0xFF111827),
+        borderRadius: BorderRadius.circular(16),
       ),
-      child: Center(child: Icon(icon, color: const Color(0xFFF63D8E))),
-    ),
-    title: Text(title),
-    subtitle: subtitle != null ? Text(subtitle) : null,
-    onTap: onTap,
-  );
+      child: child,
+    );
+  }
+
+  Widget _optionRow(String title) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 2),
+      title: Text(title),
+      trailing: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Select', style: TextStyle(color: MakerereMockData.softText)),
+          SizedBox(width: 6),
+          Icon(Icons.chevron_right, color: MakerereMockData.softText),
+        ],
+      ),
+    );
+  }
 }
