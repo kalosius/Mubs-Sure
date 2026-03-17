@@ -19,8 +19,17 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const Spacer(flex: 2),
+              SizedBox(
+                width: 88,
+                height: 88,
+                child: Image.asset(
+                  'assets/images/logotransparent for icon.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(height: 14),
               Text(
-                'Mubs Sure',
+                'MubsSure',
                 style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
